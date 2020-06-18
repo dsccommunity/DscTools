@@ -22,11 +22,11 @@ InModuleScope -ModuleName $ProjectName -Scriptblock {
                 Mock -CommandName 'Write-Host' -MockWith { }
             }
 
-            $testparams = @{
-                Message = 'This is a test message'
-            }
-
             It 'Should log new message' {
+                $testparams = @{
+                    Message = 'This is a test message'
+                }
+
                 Write-Log @testparams
                 Assert-MockCalled -CommandName Write-Host -Times 1
             }

@@ -28,19 +28,19 @@ InModuleScope -ModuleName $ProjectName -Scriptblock {
                 Mock -CommandName 'Write-Log' -MockWith { }
             }
 
-            $testparams = @{
-                ServerName                     = 'localhost'
-                CertificateSubject             = 'DSCEncryptionCert'
-                ActionAfterReboot              = 'ContinueConfiguration'
-                ConfigurationMode              = 'ApplyAndAutoCorrect'
-                ConfigurationModeFrequencyMins = 15
-                RefreshMode                    = 'Push'
-                RefreshFrequencyMins           = 45
-                ConfigurationID                = '98d4c423-fd3e-4fef-ae80-2b3a7b685c85'
-                RebootNodeIfNeeded             = $true
-            }
-
             It 'Should successfully generate and execute the scriptblock' {
+                $testparams = @{
+                    ServerName                     = 'localhost'
+                    CertificateSubject             = 'DSCEncryptionCert'
+                    ActionAfterReboot              = 'ContinueConfiguration'
+                    ConfigurationMode              = 'ApplyAndAutoCorrect'
+                    ConfigurationModeFrequencyMins = 15
+                    RefreshMode                    = 'Push'
+                    RefreshFrequencyMins           = 45
+                    ConfigurationID                = '98d4c423-fd3e-4fef-ae80-2b3a7b685c85'
+                    RebootNodeIfNeeded             = $true
+                }
+
                 $result = @"
     [DSCLocalConfigurationManager()]
     Configuration DscAgentConfig

@@ -29,11 +29,11 @@ InModuleScope -ModuleName $ProjectName -Scriptblock {
                 }
             }
 
-            $testparams = @{
-                CertificateSubject = 'DscEncryptionCert'
-            }
-
             It 'Should get existing certificate thumbprint' {
+                $testparams = @{
+                    CertificateSubject = 'DscEncryptionCert'
+                }
+
                 New-DscEncryptionCertificate @testparams | Should -Be '1234567890'
             }
         }
@@ -66,11 +66,11 @@ InModuleScope -ModuleName $ProjectName -Scriptblock {
                 }
             }
 
-            $testparams = @{
-                CertificateSubject = 'DscEncryptionCert'
-            }
-
             It 'Should create new certificate and get thumbprint' {
+                $testparams = @{
+                    CertificateSubject = 'DscEncryptionCert'
+                }
+
                 $global:gciCount = 0
                 New-DscEncryptionCertificate @testparams | Should -Be '1234567890'
             }
@@ -130,11 +130,11 @@ InModuleScope -ModuleName $ProjectName -Scriptblock {
                 Mock -CommandName 'Import-Certificate' -MockWith { }
             }
 
-            $testparams = @{
-                CertificateSubject = 'DscEncryptionCert'
-            }
-
             It 'Should create and move new certificate and get thumbprint' {
+                $testparams = @{
+                    CertificateSubject = 'DscEncryptionCert'
+                }
+
                 $global:gciCount = 0
                 New-DscEncryptionCertificate @testparams | Should -Be '1234567890'
                 Assert-MockCalled -CommandName 'Export-Certificate' -Times 1

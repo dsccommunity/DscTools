@@ -32,15 +32,15 @@ InModuleScope -ModuleName $ProjectName -Scriptblock {
                 Mock -CommandName 'Write-EventLog' -MockWith { }
             }
 
-            $testparams = @{
-                Message   = 'This is a test message'
-                Source    = 'PesterTests'
-                EntryType = 'Information'
-                LogName   = 'Application'
-                EventID  = 1
-            }
-
             It 'Should create new eventlog item' {
+                $testparams = @{
+                    Message   = 'This is a test message'
+                    Source    = 'PesterTests'
+                    EntryType = 'Information'
+                    LogName   = 'Application'
+                    EventID  = 1
+                }
+
                 Add-EventlogItem @testparams
                 Assert-MockCalled -CommandName Write-Eventlog -Times 1
             }
@@ -63,15 +63,15 @@ InModuleScope -ModuleName $ProjectName -Scriptblock {
                 Mock -CommandName 'Write-EventLog' -MockWith { }
             }
 
-            $testparams = @{
-                Message   = 'This is a test message'
-                Source    = 'PesterTests'
-                EntryType = 'Information'
-                LogName   = 'Application'
-                EventID  = 1
-            }
-
             It 'Should create the eventlog and new eventlog item' {
+                $testparams = @{
+                    Message   = 'This is a test message'
+                    Source    = 'PesterTests'
+                    EntryType = 'Information'
+                    LogName   = 'Application'
+                    EventID  = 1
+                }
+
                 Add-EventlogItem @testparams
                 Assert-MockCalled -CommandName New-Eventlog -Times 1
                 Assert-MockCalled -CommandName Write-Eventlog -Times 1
@@ -95,15 +95,15 @@ InModuleScope -ModuleName $ProjectName -Scriptblock {
                 Mock -CommandName 'Write-EventLog' -MockWith { }
             }
 
-            $testparams = @{
-                Message   = 'This is a test message'
-                Source    = 'PesterTests'
-                EntryType = 'Information'
-                LogName   = 'Application'
-                EventID  = 1
-            }
-
             It 'Should create the eventsource and new eventlog item' {
+                $testparams = @{
+                    Message   = 'This is a test message'
+                    Source    = 'PesterTests'
+                    EntryType = 'Information'
+                    LogName   = 'Application'
+                    EventID  = 1
+                }
+
                 Add-EventlogItem @testparams
                 Assert-MockCalled -CommandName New-EventSource -Times 1
                 Assert-MockCalled -CommandName Write-Eventlog -Times 1
@@ -125,15 +125,15 @@ InModuleScope -ModuleName $ProjectName -Scriptblock {
                 Mock -CommandName 'Write-EventLog' -MockWith { }
             }
 
-            $testparams = @{
-                Message   = 'This is a test message'
-                Source    = 'PesterTests'
-                EntryType = 'Information'
-                LogName   = 'Application'
-                EventID  = 1
-            }
-
             It 'Should not create a new eventlog item' {
+                $testparams = @{
+                    Message   = 'This is a test message'
+                    Source    = 'PesterTests'
+                    EntryType = 'Information'
+                    LogName   = 'Application'
+                    EventID  = 1
+                }
+
                 Add-EventlogItem @testparams
                 Assert-MockCalled -CommandName Write-Eventlog -Times 0
             }
