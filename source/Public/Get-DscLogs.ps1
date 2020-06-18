@@ -93,7 +93,7 @@ function Get-DscLogs
                                    -Arguments @{ Volume = 'C:\'; Context = 'ClientAccessible' }
             $s2 = Get-CimInstance -ClassName 'Win32_ShadowCopy' | Where-Object -FilterScript { $_.ID -eq $s1.ShadowID }
             $d  = $s2.DeviceObject + '\'
-            cmd /c mklink /d C:\dsc_logs "$d" | Out-Null
+            Start-Process -FilePath 'cmd' -ArgumentList "/c mklink /d C:\dsc_logs `"$d`"" -NoNewWindow -Wait
 
             Start-Sleep -Seconds 2
 
@@ -101,7 +101,7 @@ function Get-DscLogs
             $logfile  = Get-ChildItem -Path $scpath -Filter *.json | Sort-Object -Property LastWriteTime -Descending | Select-Object -First 1
             $fullPath = Join-Path -Path $scpath -ChildPath $logfile
 
-            cmd /c notepad $fullPath
+            Start-Process -FilePath 'cmd' -ArgumentList "/c notepad $fullPath" -NoNewWindow -Wait
 
             $folder = Get-Item -Path 'C:\dsc_logs'
             $folder.Delete()
